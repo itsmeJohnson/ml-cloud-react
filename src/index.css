@@ -5,3 +5,12 @@
 body {
   @apply font-sans bg-zinc-950 text-white;
 }
+/* Custom styling for blue bullets */
+.custom-bullet li::marker {
+  color: rgb(96 165 250 )/* Tailwind blue-500 */
+}
+
+
+
+
+

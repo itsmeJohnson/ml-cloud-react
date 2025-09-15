@@ -1,11 +1,35 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useRef } from "react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export default function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
   );
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const cardWidth = scrollRef.current.firstChild.offsetWidth + 24; // card + gap (space-x-6 → 24px)
+      if (direction === "right") {
+        scrollRef.current.scrollBy({ left: cardWidth * 3, behavior: "smooth" });
+      } else {
+        scrollRef.current.scrollBy({ left: -cardWidth * 3, behavior: "smooth" });
+      }
+    }
+  }
+
+  const items = [
+    { img: "/pic1.jpg", text: "Integrated Park Brake (IPB)" },
+    { img: "/pic2.jpg", text: "Anti-lock Braking System (ABS)" },
+    { img: "/pic3.jpg", text: "Electronic Stability Program (ESP)" },
+    { img: "/pic4.jpg", text: "Traction Control (TCS), Hill Start Assist (HSA), Hill Descent Control (HDC)" },
+    { img: "/pic5.jpg", text: "Adaptive Cruise Control (ACC), Lane Keeping Assist (LKA), Parking Assistance" },
+    { img: "/pic6.jpg", text: "Parking Assistance" },
+  ];
+
 
   // Update windowWidth on resize
   useEffect(() => {
@@ -116,9 +140,9 @@ export default function Hero() {
               Create <br className="hidden md:block" /> without <br className="hidden md:block" /> boundaries
             </h1>
             <p className="text-base md:text-lg text-gray-100 leading-relaxed">
-              Azure AI Foundry has everything you need to design, customize, and
+              Azure AI Foundry has everything you need to design, customize and
               manage AI applications and agents built in GitHub, Visual Studio,
-              Copilot Studio, and Microsoft Fabric with APIs for all your needs.
+              Copilot Studio and Microsoft Fabric with APIs for all your needs.
             </p>
             <a
               href="#contact"
@@ -318,7 +342,7 @@ export default function Hero() {
 
                 {/* Row 4: 3 divs (408x82) */}
                 <div className="flex gap-4">
-                   <div
+                  <div
                     className="bg-gray-200 shadow-lg text-black transition-transform duration-300 transform hover:scale-105 origin-bottom-left"
                     style={{
                       width: '408px',
@@ -349,7 +373,7 @@ export default function Hero() {
                       <span>•</span>
                       <div
                         style={{
-                          color:'red',
+                          color: 'red',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px'
@@ -372,20 +396,20 @@ export default function Hero() {
                       {/* First div: svg + text inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         {/* svg icon */}
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm-1-8A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2h-7ZM3 4.5C3 3.67 3.67 3 4.5 3h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-7Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm-1-8A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2h-7ZM3 4.5C3 3.67 3.67 3 4.5 3h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-7Z" fill="currentColor"></path></svg>
                         {/* nested text div */}
                         <div>Text-generation</div>
                       </div>
 
                       {/* Second div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
                         <div>561</div>
                       </div>
 
                       {/* Third div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
                         <div>154</div>
                       </div>
                     </div>
@@ -424,7 +448,7 @@ export default function Hero() {
                       <span>•</span>
                       <div
                         style={{
-                          color: 'red', 
+                          color: 'red',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px'
@@ -498,14 +522,14 @@ export default function Hero() {
                       <span>GPT-4.1</span>
                       <span>•</span>
                       <div
-                         style={{
-                          color: 'rgb(234, 56, 166)', 
+                        style={{
+                          color: 'rgb(234, 56, 166)',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px'
                         }}
                       >
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.47 9.83a.92.92 0 0 0 1.4-.46l.35-1.07A1.72 1.72 0 0 1 8.3 7.22l1.09-.35a.92.92 0 0 0-.04-1.75l-1.07-.35A1.7 1.7 0 0 1 7.2 3.7L6.85 2.6a.92.92 0 0 0-.87-.6c-.2 0-.38.05-.53.16a.92.92 0 0 0-.35.46l-.35 1.09A1.71 1.71 0 0 1 3.7 4.77l-1.08.36a.92.92 0 0 0 0 1.74l1.08.35A1.71 1.71 0 0 1 4.78 8.3l.35 1.08c.06.18.18.34.34.45ZM4 6.26 3.15 6l.87-.28A2.72 2.72 0 0 0 5.7 4l.26-.86.28.87a2.7 2.7 0 0 0 1.72 1.71l.88.27-.86.28a2.7 2.7 0 0 0-1.72 1.72l-.26.85-.28-.86A2.7 2.7 0 0 0 4 6.26Zm6.52 7.6c.14.09.3.14.47.14a.81.81 0 0 0 .76-.55l.25-.76a1.09 1.09 0 0 1 .68-.68l.77-.25a.8.8 0 0 0-.02-1.53l-.77-.25a1.08 1.08 0 0 1-.68-.67l-.25-.78A.8.8 0 0 0 11.1 8a.8.8 0 0 0-.88.54l-.25.77a1.1 1.1 0 0 1-.66.67l-.78.26a.8.8 0 0 0-.38 1.22c.1.14.23.24.4.3l.76.25a1.09 1.09 0 0 1 .68.68l.25.77c.06.16.16.3.3.4Zm-.91-2.8L9.44 11l.19-.06a2.09 2.09 0 0 0 1.3-1.32l.05-.18.06.18a2.08 2.08 0 0 0 1.32 1.32l.2.06-.18.06a2.08 2.08 0 0 0-1.32 1.32l-.06.18-.06-.18a2.07 2.07 0 0 0-1.32-1.32Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.47 9.83a.92.92 0 0 0 1.4-.46l.35-1.07A1.72 1.72 0 0 1 8.3 7.22l1.09-.35a.92.92 0 0 0-.04-1.75l-1.07-.35A1.7 1.7 0 0 1 7.2 3.7L6.85 2.6a.92.92 0 0 0-.87-.6c-.2 0-.38.05-.53.16a.92.92 0 0 0-.35.46l-.35 1.09A1.71 1.71 0 0 1 3.7 4.77l-1.08.36a.92.92 0 0 0 0 1.74l1.08.35A1.71 1.71 0 0 1 4.78 8.3l.35 1.08c.06.18.18.34.34.45ZM4 6.26 3.15 6l.87-.28A2.72 2.72 0 0 0 5.7 4l.26-.86.28.87a2.7 2.7 0 0 0 1.72 1.71l.88.27-.86.28a2.7 2.7 0 0 0-1.72 1.72l-.26.85-.28-.86A2.7 2.7 0 0 0 4 6.26Zm6.52 7.6c.14.09.3.14.47.14a.81.81 0 0 0 .76-.55l.25-.76a1.09 1.09 0 0 1 .68-.68l.77-.25a.8.8 0 0 0-.02-1.53l-.77-.25a1.08 1.08 0 0 1-.68-.67l-.25-.78A.8.8 0 0 0 11.1 8a.8.8 0 0 0-.88.54l-.25.77a1.1 1.1 0 0 1-.66.67l-.78.26a.8.8 0 0 0-.38 1.22c.1.14.23.24.4.3l.76.25a1.09 1.09 0 0 1 .68.68l.25.77c.06.16.16.3.3.4Zm-.91-2.8L9.44 11l.19-.06a2.09 2.09 0 0 0 1.3-1.32l.05-.18.06.18a2.08 2.08 0 0 0 1.32 1.32l.2.06-.18.06a2.08 2.08 0 0 0-1.32 1.32l-.06.18-.06-.18a2.07 2.07 0 0 0-1.32-1.32Z" fill="currentColor"></path></svg>
                         <span>New</span>
                       </div>
                     </div>
@@ -529,13 +553,13 @@ export default function Hero() {
 
                       {/* Second div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
                         <div>561</div>
                       </div>
 
                       {/* Third div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
                         <div>154</div>
                       </div>
                     </div>
@@ -546,7 +570,7 @@ export default function Hero() {
 
                 {/* Row 5: 3 divs (408x82) */}
                 <div className="flex gap-4">
-                   <div
+                  <div
                     className="bg-gray-200 shadow-lg text-black transition-transform duration-300 transform hover:scale-105 origin-bottom-left"
                     style={{
                       width: '408px',
@@ -577,7 +601,7 @@ export default function Hero() {
                       <span>•</span>
                       <div
                         style={{
-                          color:'red',
+                          color: 'red',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px'
@@ -600,20 +624,20 @@ export default function Hero() {
                       {/* First div: svg + text inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         {/* svg icon */}
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm-1-8A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2h-7ZM3 4.5C3 3.67 3.67 3 4.5 3h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-7Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm-1-8A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2h-7ZM3 4.5C3 3.67 3.67 3 4.5 3h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-7Z" fill="currentColor"></path></svg>
                         {/* nested text div */}
                         <div>Text-generation</div>
                       </div>
 
                       {/* Second div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
                         <div>561</div>
                       </div>
 
                       {/* Third div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
                         <div>154</div>
                       </div>
                     </div>
@@ -651,14 +675,14 @@ export default function Hero() {
                       <span>mistralai-Mixtral-8x7B</span>
                       <span>•</span>
                       <div
-                         style={{
-                          color: 'rgb(234, 56, 166)', 
+                        style={{
+                          color: 'rgb(234, 56, 166)',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px'
                         }}
                       >
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.47 9.83a.92.92 0 0 0 1.4-.46l.35-1.07A1.72 1.72 0 0 1 8.3 7.22l1.09-.35a.92.92 0 0 0-.04-1.75l-1.07-.35A1.7 1.7 0 0 1 7.2 3.7L6.85 2.6a.92.92 0 0 0-.87-.6c-.2 0-.38.05-.53.16a.92.92 0 0 0-.35.46l-.35 1.09A1.71 1.71 0 0 1 3.7 4.77l-1.08.36a.92.92 0 0 0 0 1.74l1.08.35A1.71 1.71 0 0 1 4.78 8.3l.35 1.08c.06.18.18.34.34.45ZM4 6.26 3.15 6l.87-.28A2.72 2.72 0 0 0 5.7 4l.26-.86.28.87a2.7 2.7 0 0 0 1.72 1.71l.88.27-.86.28a2.7 2.7 0 0 0-1.72 1.72l-.26.85-.28-.86A2.7 2.7 0 0 0 4 6.26Zm6.52 7.6c.14.09.3.14.47.14a.81.81 0 0 0 .76-.55l.25-.76a1.09 1.09 0 0 1 .68-.68l.77-.25a.8.8 0 0 0-.02-1.53l-.77-.25a1.08 1.08 0 0 1-.68-.67l-.25-.78A.8.8 0 0 0 11.1 8a.8.8 0 0 0-.88.54l-.25.77a1.1 1.1 0 0 1-.66.67l-.78.26a.8.8 0 0 0-.38 1.22c.1.14.23.24.4.3l.76.25a1.09 1.09 0 0 1 .68.68l.25.77c.06.16.16.3.3.4Zm-.91-2.8L9.44 11l.19-.06a2.09 2.09 0 0 0 1.3-1.32l.05-.18.06.18a2.08 2.08 0 0 0 1.32 1.32l.2.06-.18.06a2.08 2.08 0 0 0-1.32 1.32l-.06.18-.06-.18a2.07 2.07 0 0 0-1.32-1.32Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.47 9.83a.92.92 0 0 0 1.4-.46l.35-1.07A1.72 1.72 0 0 1 8.3 7.22l1.09-.35a.92.92 0 0 0-.04-1.75l-1.07-.35A1.7 1.7 0 0 1 7.2 3.7L6.85 2.6a.92.92 0 0 0-.87-.6c-.2 0-.38.05-.53.16a.92.92 0 0 0-.35.46l-.35 1.09A1.71 1.71 0 0 1 3.7 4.77l-1.08.36a.92.92 0 0 0 0 1.74l1.08.35A1.71 1.71 0 0 1 4.78 8.3l.35 1.08c.06.18.18.34.34.45ZM4 6.26 3.15 6l.87-.28A2.72 2.72 0 0 0 5.7 4l.26-.86.28.87a2.7 2.7 0 0 0 1.72 1.71l.88.27-.86.28a2.7 2.7 0 0 0-1.72 1.72l-.26.85-.28-.86A2.7 2.7 0 0 0 4 6.26Zm6.52 7.6c.14.09.3.14.47.14a.81.81 0 0 0 .76-.55l.25-.76a1.09 1.09 0 0 1 .68-.68l.77-.25a.8.8 0 0 0-.02-1.53l-.77-.25a1.08 1.08 0 0 1-.68-.67l-.25-.78A.8.8 0 0 0 11.1 8a.8.8 0 0 0-.88.54l-.25.77a1.1 1.1 0 0 1-.66.67l-.78.26a.8.8 0 0 0-.38 1.22c.1.14.23.24.4.3l.76.25a1.09 1.09 0 0 1 .68.68l.25.77c.06.16.16.3.3.4Zm-.91-2.8L9.44 11l.19-.06a2.09 2.09 0 0 0 1.3-1.32l.05-.18.06.18a2.08 2.08 0 0 0 1.32 1.32l.2.06-.18.06a2.08 2.08 0 0 0-1.32 1.32l-.06.18-.06-.18a2.07 2.07 0 0 0-1.32-1.32Z" fill="currentColor"></path></svg>
                         <span>New</span>
                       </div>
                     </div>
@@ -675,14 +699,14 @@ export default function Hero() {
                       {/* First div: svg + text inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         {/* svg icon */}
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm-1-8A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2h-7ZM3 4.5C3 3.67 3.67 3 4.5 3h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-7Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm-1-8A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2h-7ZM3 4.5C3 3.67 3.67 3 4.5 3h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-7Z" fill="currentColor"></path></svg>
                         {/* nested text div */}
                         <div>Text-generation</div>
                       </div>
 
                       {/* Second div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M7.2 2.1a.9.9 0 0 1 1.6 0l1.53 3.08 3.4.5a.9.9 0 0 1 .5 1.53l-2.46 2.4.58 3.39a.9.9 0 0 1-1.3.95L8 12.35l-3.04 1.6a.9.9 0 0 1-1.3-.95l.57-3.39-2.46-2.4a.9.9 0 0 1 .5-1.53l3.4-.5L7.2 2.1Zm.8.63L6.55 5.67a.9.9 0 0 1-.68.5l-3.25.47 2.35 2.3c.21.2.3.5.26.79l-.56 3.24 2.91-1.53a.9.9 0 0 1 .84 0l2.9 1.53-.55-3.24a.9.9 0 0 1 .26-.8l2.36-2.3-3.26-.46a.9.9 0 0 1-.67-.5L8 2.73Z" fill="currentColor"></path></svg>
                         <div>561</div>
                       </div>
 
@@ -727,7 +751,7 @@ export default function Hero() {
                       <span>•</span>
                       <div
                         style={{
-                          color:'red',
+                          color: 'red',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px'
@@ -763,7 +787,7 @@ export default function Hero() {
 
                       {/* Third div: svg + 561 inside nested div */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <svg fill="currentColor"  aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
+                        <svg fill="currentColor" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 3.06A.5.5 0 0 0 5 3.5v9c0 .38.41.62.75.44l8-4.5a.5.5 0 0 0 0-.88l-8-4.5ZM4 3.5a1.5 1.5 0 0 1 2.24-1.3l8 4.5a1.5 1.5 0 0 1 0 2.6l-8 4.5A1.5 1.5 0 0 1 4 12.5v-9Z" fill="currentColor"></path></svg>
                         <div>154</div>
                       </div>
                     </div>
@@ -774,10 +798,10 @@ export default function Hero() {
             </div>
 
             {/* Right: Text */}
-            <div className="flex flex-col items-start justify-center p-8 text-white space-y-10 ">              
+            <div className="flex flex-col items-start justify-center p-8 text-white space-y-10 ">
               <h2 className="text-4xl font-bold">
-              Simple Setup
-            </h2>
+                Simple Setup
+              </h2>
 
               <p className="text-lg text-gray-200 max-w-lg">
                 Get started quickly with over 200 enterprise-ready Azure services
@@ -841,9 +865,44 @@ export default function Hero() {
           </div>
         </section>
 
+        <section>
+          <div className="bg-black flex justify-between items-center p-14">
+            <h2 className="font-bold w-1/2 text-[60px]">ISO 26262 Functional Safety Consulting</h2>
+            <div className="text-gray-400 w-1/2 text-[20px]">
+              <p>With extensive <span className="text-gray-200 font-semibold">automotive experience</span>, including <span className="text-gray-200 font-semibold">11 years in passenger vehicle systems</span>, I specialize in <span className="text-gray-200 font-semibold">braking technologies</span> and <span className="text-gray-200 font-semibold">Advanced Driver Assistance Systems (ADAS)</span>. We bring <span className="text-gray-200 font-semibold">7+ years of ISO 26262 Functional Safety</span> experience with a focus on safety lifecycle management, hazard analysis, system and software safety, and compliance documentation.</p>
+            </div>
+          </div>
+
+          <div className="relative w-full">
+
+
+            {/* Scroll Container */}
+            <div
+              ref={scrollRef}
+              className="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth px-12"
+              style={{ scrollSnapType: "x mandatory" }}
+            >
+              {items.map((item, i) => (
+                <div
+                  key={i}
+                  className="min-w-[25%] flex-shrink-0 bg-white flex flex-col items-center p-4 scroll-snap-align-start"
+                >
+                  <img
+                    src={item.img}
+                    alt={item.text}
+                    className="w-82 h-72 object-cover rounded-xl"
+                  />
+                  <p className="mt-2 text-gray-700 font-bold w-[15.5rem] text-center break-words">
+                    {item.text}
+                  </p>                </div>
+              ))}
+            </div>
+
+
+          </div>
+
+        </section>
       </>
-
-
     </>
   );
 }
