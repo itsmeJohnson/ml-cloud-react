@@ -10,7 +10,13 @@ body {
   color: rgb(96 165 250 )/* Tailwind blue-500 */
 }
 
-
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevents horizontal scroll */
+}
 
 
 

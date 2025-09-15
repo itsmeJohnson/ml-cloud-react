@@ -43,32 +43,16 @@ export default function Hero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Determine background image based on screen width
-  const getBackgroundImage = () => {
-
-    if (windowWidth < 416) {
-      return '/smallscreen.png'; // Small screen image
-    } else if (windowWidth >= 416 && windowWidth < 530) {
-      return '/smallscreen1.png'; // Medium screen image
-    }
-    else if (windowWidth >= 530 && windowWidth < 769) {
-      return '/mediumscreen.png'; // Medium screen image
-    } else if (windowWidth >= 769 && windowWidth < 1030) {
-      return '/mobile.png'; // Mobile screen image
-    } else {
-      return '/Desktop-1.png'; // Desktop image
-    }
-  };
 
   return (
     <>
       <section
         id="home"
-        className="relative min-h-screen bg-cover bg-no-repeat flex flex-col pt-20 w-full"
+        className="relative md:min-h-screen bg-cover bg-no-repeat flex flex-col pt-20 w-full"
         style={{
-          backgroundImage: `url(${getBackgroundImage()})`,
-          backgroundPosition: windowWidth < 1030 ? '50% right 400px' : 'right center', // Adjust background position for smaller screens
-          backgroundSize: '100% 100%',
+          backgroundImage: windowWidth >= 1030 ? 'url(/Desktop-1.png)' : 'none',
+          backgroundColor: windowWidth < 1030 ? '#232338' : 'transparent', 
+          backgroundPosition: windowWidth < 1030 ? '50% right 400px' : 'right center', backgroundSize: '100% 100%',
           backgroundRepeat: 'no-repeat',
         }}
       >
@@ -137,13 +121,10 @@ export default function Hero() {
           {/* Left Side */}
           <div className="max-w-xl text-white space-y-6 text-center lg:text-left">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent">
-              Create <br className="hidden md:block" /> without <br className="hidden md:block" /> boundaries
+              <span className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text">Cutting-edge Microsoft technology.</span>
             </h1>
             <p className="text-base md:text-lg text-gray-100 leading-relaxed">
-              Azure AI Foundry has everything you need to design, customize and
-              manage AI applications and agents built in GitHub, Visual Studio,
-              Copilot Studio and Microsoft Fabric with APIs for all your needs.
-            </p>
+              Professional solutions for your cloud development needs. Streamlined processes for efficient software delivery. Expert guidance for your DevOps journey. Driving Tomorrow’s Safety with Expert Functional Safety Solutions.              </p>
             <a
               href="#contact"
               className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-all text-sm md:text-base"
@@ -163,10 +144,10 @@ export default function Hero() {
           }}
         >
           {/* Fog Overlay Join */}
-          <div className="relative w-full h-40 bg-gradient-to-b from-black/80 via-black/60 to-transparent blur-2xl -mt-20 z-20 pointer-events-none"></div>
+          <div className="hidden lg:block relative w-full h-40 bg-gradient-to-b from-black/80 via-black/60 to-transparent blur-2xl -mt-20 z-20 pointer-events-none"></div>
 
           {/* divs group */}
-          <div className="w-full min-h-screen grid grid-cols-2 md:grid-cols-2  ">
+          <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2 ">
             <div className="hidden lg:flex lg:w-full lg:h-auto p-8 space-y-2 flex flex-col justify-center items-end transform rotate-[-7.55deg] skew-x-[10deg] skew-y-[0deg] ">
               <>
                 {/* Row 1: 3 divs (408x188) */}
@@ -175,8 +156,6 @@ export default function Hero() {
                     className="bg-gray-200 shadow-lg transition-transform duration-300 transform hover:scale-105 origin-bottom-left"
                     style={{ width: '408px', height: '184px', borderRadius: '20px' }}
                   >
-                    {/* Content for first div */}
-
                   </div>
 
                   <div
@@ -189,11 +168,10 @@ export default function Hero() {
                       className="w-10 h-10 mb-2"
                     />
                     <h5 className="text-black text-lg font-semibold mb-1">
-                      Azure AI Foundry Agent Service
+                      Azure Development Services
                     </h5>
                     <p className="text-black text-sm">
-                      A fully-managed service to help you build, deploy, and scale fast, secure, and extensible AI agents.
-                    </p>
+                      Professional solutions for your cloud development needs.                    </p>
                   </div>
 
 
@@ -206,12 +184,10 @@ export default function Hero() {
                       alt="Azure AI"
                       className="w-10 h-10 mb-2"
                     />
-                    <h5 className="text-black text-lg font-semibold mb-1">
-                      Azure AI Foundry Agent Models
-                    </h5>
+                    <h5 className="text-black text-lg font-semibold mb-1 ">
+                      DevOps Solutions                   </h5>
                     <p className="text-black text-sm">
-                      Industry-leading coding and language AI models that you can fine-tune to your specific needs.
-                    </p>
+                      Streamlined processes for efficient software delivery.                   </p>
                   </div>
                 </div>
 
@@ -320,7 +296,7 @@ export default function Hero() {
                       className="w-10 h-10 mb-2"
                     />
                     <h5 className="text-black text-base font-semibold">
-                      Azure AI Search
+                      ML Cloud Search
                     </h5>
                   </div>
 
@@ -334,7 +310,7 @@ export default function Hero() {
                       className="w-10 h-10 mb-2"
                     />
                     <h5 className="text-black text-base font-semibold">
-                      Azure AI Content Safety
+                      Expert Functional Safety Solutions
                     </h5>
                   </div>
                 </div>
@@ -798,42 +774,40 @@ export default function Hero() {
             </div>
 
             {/* Right: Text */}
-            <div className="flex flex-col items-start justify-center p-8 text-white space-y-10 ">
+            <div className="flex flex-col items-start justify-center p-8 text-white space-y-10 w-full ">
               <h2 className="text-4xl font-bold">
                 Simple Setup
               </h2>
 
               <p className="text-lg text-gray-200 max-w-lg">
-                Get started quickly with over 200 enterprise-ready Azure services
-                along with more than 11,000+ models for your next AI app.
+                Transforming businesses with cutting-edge Microsoft technologies expertise.
               </p>
 
               <a
-                href="#foundry"
+                href="#about"
                 className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-all"
               >
-                Browse Foundry Models
+                About us
               </a>
             </div>
 
           </div>
 
           {/* Section 2 */}
-          <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-[40%_60%]">
-            <div className="flex flex-col items-start justify-center p-8 text-white space-y-10 text-right md:items-end">
+          <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[40%_60%]">
+            <div className="flex flex-col items-end text-right justify-center  p-8 text-white space-y-10 text-right md:items-end">
               <h2 className="text-4xl font-bold">
                 Code with precision
               </h2>
 
               <p className="text-lg text-gray-200 max-w-lg">
-                An easy-to-use, unified API and SDK allows you to build faster and smarter while getting you to production with confidence.
-              </p>
+                With extensive experience, we specialize in leveraging Microsoft technologies to drive business success. Our expertise in Azure development and DevOps practices empowers organizations to build scalable, secure, and efficient solutions. We help businesses streamline operations, enhance collaboration, and accelerate their digital transformation through tailored solutions in the cloud. Let us elevate your business with cutting-edge, cloud-based technologies and best-in-class DevOps methodologies.              </p>
 
               <a
-                href="#foundry"
+                href="#services"
                 className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-all"
               >
-                Download the Azure AI Foundry SDK
+                Our services
               </a>
             </div>
 
@@ -848,27 +822,13 @@ export default function Hero() {
 
           </div>
 
-          {/* Section 3 */}
-          <div className="w-full min-h-screen flex flex-col">
-            {/* Top: Text */}
-            <div className="flex items-center justify-center flex-1 p-8 text-white">
-              <h2 className="text-4xl font-bold">Section 3: Text Top + Image Bottom</h2>
-            </div>
-            {/* Bottom: Image */}
-            <div className="flex items-center justify-center flex-1 p-8">
-              <img
-                src="/your-image3.png"
-                alt="Example"
-                className="max-w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
+
         </section>
 
         <section>
-          <div className="bg-black flex justify-between items-center p-14">
-            <h2 className="font-bold w-1/2 text-[60px]">ISO 26262 Functional Safety Consulting</h2>
-            <div className="text-gray-400 w-1/2 text-[20px]">
+          <div className="bg-black flex flex-col lg:flex-row justify-between items-center p-14 space-y-4 lg:space-y-0 ">
+            <h2 className="font-bold w-full lg:w-1/2 text-[40px] lg:text-[60px] text-center lg:text-left">ISO 26262 Functional Safety Consulting</h2>
+            <div className="text-gray-400 w-full lg:w-1/2 text-[20px] text-center lg:text-left">
               <p>With extensive <span className="text-gray-200 font-semibold">automotive experience</span>, including <span className="text-gray-200 font-semibold">11 years in passenger vehicle systems</span>, I specialize in <span className="text-gray-200 font-semibold">braking technologies</span> and <span className="text-gray-200 font-semibold">Advanced Driver Assistance Systems (ADAS)</span>. We bring <span className="text-gray-200 font-semibold">7+ years of ISO 26262 Functional Safety</span> experience with a focus on safety lifecycle management, hazard analysis, system and software safety, and compliance documentation.</p>
             </div>
           </div>
