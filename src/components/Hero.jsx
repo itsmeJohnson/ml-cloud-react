@@ -789,48 +789,6 @@ export default function Hero() {
               >
                 About us
               </a>
-<<<<<<< HEAD
-            </li>
-          </ul>
-        </div>
-      )}
-
-      {/* Hero Section */}
-      <main className="flex flex-1 items-center justify-between px-6 lg:px-20 flex-col lg:flex-row gap-2 sm:gap-4 lg:gap-12">
-  {/* Left Side */}
-  <div className="max-w-xl text-white space-y-3 sm:space-y-4 lg:space-y-6 text-center lg:text-left">
-    <h1 className="text-4xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent">
-      Create <br className="hidden md:block" /> without{" "}
-      <br className="hidden md:block" /> boundaries
-    </h1>
-    <p className="text-base md:text-lg text-gray-400 leading-relaxed">
-      Azure AI Foundry has everything you need to design, customize, and
-      manage AI applications and agents built in GitHub, Visual Studio,
-      Copilot Studio, and Microsoft Fabric with APIs for all your needs.
-    </p>
-    <a
-      href="#contact"
-      className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-all text-sm md:text-base"
-    >
-      Sign in to get started
-    </a>
-  </div>
-
-  {/* Right Side - Screenshot */}
-  <div className="relative w-full lg:w-7/12 -mt-4 sm:mt-0 hover:scale-105 transition-transform duration-500">
-    <img
-      src="/heroone.jpg"
-      alt="App Preview"
-      className="w-full h-auto rounded-2xl shadow-2xl object-cover"
-    />
-    <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-  </div>
-</main>
-
-
-
-    </section>
-=======
             </div>
 
           </div>
@@ -906,6 +864,5 @@ export default function Hero() {
         </section>
       </>
     </>
->>>>>>> c03604ace02d19f519d87dacdfbb5fa14b42ede4
   );
 }
