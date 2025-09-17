@@ -12,7 +12,11 @@
     "lucide-react": "^0.542.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
     "tailwind-scroll-behavior": "^1.0.0"
+=======
+    "swiper": "^11.2.10"
+>>>>>>> c03604ace02d19f519d87dacdfbb5fa14b42ede4
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.0",
