@@ -5,10 +5,19 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export default function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
   );
   const scrollRef = useRef(null);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50); // true when you scroll down 50px
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -51,7 +60,7 @@ export default function Hero() {
         className="relative md:min-h-screen bg-cover bg-no-repeat flex flex-col pt-20 w-full"
         style={{
           backgroundImage: windowWidth >= 1030 ? 'url(/Desktop-1.png)' : 'none',
-          backgroundColor: windowWidth < 1030 ? '#232338' : 'transparent', 
+          backgroundColor: windowWidth < 1030 ? '#232338' : 'transparent',
           backgroundPosition: windowWidth < 1030 ? '50% right 400px' : 'right center', backgroundSize: '100% 100%',
           backgroundRepeat: 'no-repeat',
         }}
@@ -117,7 +126,7 @@ export default function Hero() {
         )}
 
         {/* Hero Section */}
-        <main className="flex flex-1 items-center justify-between px-6 lg:px-20 flex-col lg:flex-row gap-12 lg:gap-0">
+        <main className="flex flex-1 items-center justify-between px-6 lg:px-20 flex-col lg:flex-row gap-12 lg:gap-0 mt-16 md:mt-20">
           {/* Left Side */}
           <div className="max-w-xl text-white space-y-6 text-center lg:text-left">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent">
@@ -232,7 +241,9 @@ export default function Hero() {
                       aria-hidden="true"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
-                    >                  <path d="M9.5 2a.5.5 0 0 0 0 1H13v1.86C13 6.03 11.83 7 10.5 7a.5.5 0 0 0 0 1C12.21 8 14 6.74 14 4.86V2.5a.5.5 0 0 0-.5-.5h-4ZM7.96 5.3a.5.5 0 0 0-.92 0l-5 12a.5.5 0 1 0 .92.4L4.5 14h6l1.54 3.7a.5.5 0 1 0 .92-.39l-1.66-3.99v-.02l-3.34-8Zm2.12 7.7H4.92L7.5 6.8l2.58 6.2ZM15.5 2c.28 0 .5.22.5.5V6h1.5a.5.5 0 0 1 0 1H16v6.5a.5.5 0 1 1-1 0v-11c0-.28.23-.5.5-.5Z" fill="currentColor"></path></svg>
+                    >                  <path d="M9.5 2a.5.5 0 0 0-.5.5V6h1.5a.5.5 0 0 0 0 1H16v6.5a.5.5 0 1 1-1 0v-11c0-.28.23-.5.5-.5Z" fill="currentColor"></path>
+                      <path d="M7.96 5.3a.5.5 0 0 0-.92 0l-5 12a.5.5 0 1 0 .92.4L4.5 14h6l1.54 3.7a.5.5 0 1 0 .92-.39l-1.66-3.99v-.02l-3.34-8Zm2.12 7.7H4.92L7.5 6.8l2.58 6.2ZM15.5 2c.28 0 .5.22.5.5V6h1.5a.5.5 0 0 1 0 1H16v6.5a.5.5 0 1 1-1 0v-11c0-.28.23-.5.5-.5Z" fill="currentColor"></path>
+                    </svg>
 
                     <h5 className="text-black text-base font-semibold">
                       Language
@@ -251,7 +262,7 @@ export default function Hero() {
                       aria-hidden="true"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
-                    >                    <path d="M10 2c.28 0 .5.22.5.5v15a.5.5 0 0 1-1 0v-15c0-.28.22-.5.5-.5Zm3.5 3c.28 0 .5.22.5.5v9a.5.5 0 0 1-1 0v-9c0-.28.22-.5.5-.5ZM7 5.5a.5.5 0 0 0-1 0v9a.5.5 0 0 0 1 0v-9ZM16.5 8c.28 0 .5.22.5.5v3a.5.5 0 0 1-1 0v-3c0-.28.22-.5.5-.5ZM4 8.5a.5.5 0 0 0-1 0v3a.5.5 0 0 0 1 0v-3Z" fill="currentColor"></path></svg>
+                    >                    <path d="M10 2c.28 0 .5.22.5.5v15a.5.5 0 0 1-1 0v-15c0-.28.22-.5.5-.5ZM7 5.5a.5.5 0 0 0-1 0v9a.5.5 0 0 0 1 0v-9ZM16.5 8c.28 0 .5.22.5.5v3a.5.5 0 0 1-1 0v-3c0-.28.22-.5.5-.5ZM4 8.5a.5.5 0 0 0-1 0v3a.5.5 0 0 0 1 0v-3Z" fill="currentColor"></path></svg>
 
                     <h5 className="text-black text-base font-semibold">
                       Speech
@@ -269,7 +280,6 @@ export default function Hero() {
                   >
                     {/* Content for div 1 */}
                   </div>
-
                   <div
                     className="bg-gray-200 shadow-lg p-3 flex flex-col items-center justify-center gap-3 transition-transform duration-300 transform hover:scale-105 origin-bottom-left"
                     style={{ width: '301px', height: '111px', borderRadius: '12px' }}
@@ -825,43 +835,46 @@ export default function Hero() {
 
         </section>
 
-        <section>
-          <div className="bg-black flex flex-col lg:flex-row justify-between items-center p-14 space-y-4 lg:space-y-0 ">
-            <h2 className="font-bold w-full lg:w-1/2 text-[40px] lg:text-[60px] text-center lg:text-left">ISO 26262 Functional Safety Consulting</h2>
-            <div className="text-gray-400 w-full lg:w-1/2 text-[20px] text-center lg:text-left">
-              <p>With extensive <span className="text-gray-200 font-semibold">automotive experience</span>, including <span className="text-gray-200 font-semibold">11 years in passenger vehicle systems</span>, I specialize in <span className="text-gray-200 font-semibold">braking technologies</span> and <span className="text-gray-200 font-semibold">Advanced Driver Assistance Systems (ADAS)</span>. We bring <span className="text-gray-200 font-semibold">7+ years of ISO 26262 Functional Safety</span> experience with a focus on safety lifecycle management, hazard analysis, system and software safety, and compliance documentation.</p>
-            </div>
-          </div>
+        <section className="w-full">
+  {/* Text Section */}
+  <div className="bg-black flex flex-col lg:flex-row justify-between items-center p-8 sm:p-12 lg:p-14 space-y-4 lg:space-y-0">
+    <h2 className="font-bold w-full lg:w-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-[60px] text-center lg:text-left text-white">
+      ISO 26262 Functional Safety Consulting
+    </h2>
+    <div className="text-gray-400 w-full lg:w-1/2 text-sm sm:text-base md:text-lg lg:text-[20px] text-center lg:text-left">
+      <p>
+        With extensive <span className="text-gray-200 font-semibold">automotive experience</span>, including <span className="text-gray-200 font-semibold">11 years in passenger vehicle systems</span>, I specialize in <span className="text-gray-200 font-semibold">braking technologies</span> and <span className="text-gray-200 font-semibold">Advanced Driver Assistance Systems (ADAS)</span>. We bring <span className="text-gray-200 font-semibold">7+ years of ISO 26262 Functional Safety</span> experience with a focus on safety lifecycle management, hazard analysis, system and software safety, and compliance documentation.
+      </p>
+    </div>
+  </div>
 
-          <div className="relative w-full">
+  {/* Scrollable Cards */}
+  <div className="relative w-full mt-8">
+    <div
+      ref={scrollRef}
+      className="flex overflow-x-auto space-x-4 sm:space-x-6 px-4 sm:px-8 scrollbar-hide scroll-smooth"
+      style={{ scrollSnapType: "x mandatory" }}
+    >
+      {items.map((item, i) => (
+        <div
+          key={i}
+          className="flex-shrink-0 w-[80%] sm:w-[45%] md:w-[30%] lg:w-[25%] bg-white flex flex-col items-center p-4 rounded-xl scroll-snap-align-start"
+        >
+          <img
+            src={item.img}
+            alt={item.text}
+            className="w-full h-48 sm:h-60 md:h-72 object-cover rounded-xl"
+          />
+          <p className="mt-2 text-gray-700 font-bold text-sm sm:text-base md:text-lg text-center break-words">
+            {item.text}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
 
-            {/* Scroll Container */}
-            <div
-              ref={scrollRef}
-              className="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth px-12"
-              style={{ scrollSnapType: "x mandatory" }}
-            >
-              {items.map((item, i) => (
-                <div
-                  key={i}
-                  className="min-w-[25%] flex-shrink-0 bg-white flex flex-col items-center p-4 scroll-snap-align-start"
-                >
-                  <img
-                    src={item.img}
-                    alt={item.text}
-                    className="w-82 h-72 object-cover rounded-xl"
-                  />
-                  <p className="mt-2 text-gray-700 font-bold w-[15.5rem] text-center break-words">
-                    {item.text}
-                  </p>                </div>
-              ))}
-            </div>
-
-
-          </div>
-
-        </section>
       </>
     </>
   );
